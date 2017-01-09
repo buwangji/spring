@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <!--
+        ·id: 容器内唯一
+        ·class：被管理bean的完全限定名
+        ·放入Spring容器的Bean，默认都是单例的 scope="singleton"
+        ·scope="prototype" 每次获取的都是不同的对象实例
+        ·Bean的对象默认会在Spring容器启动时创建。
+            如果Bean的Scope值为prototype，那对象会在调用时创建;
+            如果Bean的Scope为singleton时，将lazy-init的属性设置true，那么对象也会在
+        调用时创建
+    -->
+    <bean id="UserDaoImpl" class="com.laowang.dao.impl.UserDaoImpl"/>
+
+    <bean id="userService" class="com.laowang.service.impl.UserServiceImpl">
+        <property name="userDao" ref="UserDaoImpl"/>
+    </bean>
+<!--通知类-->
+    <bean id="myAspect" class="com.laowang.aop.MyAspect"/>
+    <aop:config>
+        <!--ref:引用通知类-->
+        <aop:aspect ref="myAspect">
+            <!--切入点表达式-->
+            <aop:pointcut id="pt" expression="execution(* com.laowang.service..*.*(..))"/>
+            <!--环绕通知-->
+            <!--前置通知-->
+            <aop:before method="before" pointcut-ref="pt"/>
+            <!--后置通知-->
+            <aop:after-returning method="after" pointcut-ref="pt" returning="result"/>
+            <!--异常通知-->
+            <aop:after-throwing method="exceptionAdvice" pointcut-ref="pt" throwing="ex"/>
+            <!--最终通知-->
+            <aop:after method="finallyAdvice" pointcut-ref="pt"/>
+        </aop:aspect>
+        
+    </aop:config>
+
+
+
+</beans>
