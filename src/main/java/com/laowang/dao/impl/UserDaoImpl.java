@@ -1,10 +1,12 @@
 package com.laowang.dao.impl;
 
 import com.laowang.dao.UserDao;
+import org.springframework.stereotype.Repository;
 
 /**
  * Created by Administrator on 2017/1/7.
  */
+@Repository
 public class UserDaoImpl implements UserDao {
     @Override
     public void add() {
