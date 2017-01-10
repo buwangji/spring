@@ -1,32 +1,28 @@
 package com.laowang.service.impl;
 
-import com.laowang.dao.UserDao;
+
+import com.laowang.mapper.UserMapper;
+import com.laowang.pojo.User;
 import com.laowang.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Created by Administrator on 2017/1/9.
- */
+
 @Service
 public class UserServiceImpl implements UserService {
-
     @Autowired
-    private UserDao userDao;
-
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
-
+    private UserMapper userMapper;
 
     @Override
-    public void save() {
-
+    @Transactional
+    public void save(User user) throws Exception {
+        userMapper.save(user);
     }
 
     @Override
-    public int getNum() {
-        System.out.println("getNum~~~~~~~~~~~~");
-        return 100;
+    public User findById(Integer id) {
+        return userMapper.findById(id);
     }
 }

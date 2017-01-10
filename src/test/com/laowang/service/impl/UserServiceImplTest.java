@@ -1,5 +1,6 @@
-package com.laowang.test;
+package com.laowang.service.impl;
 
+import com.laowang.pojo.User;
 import com.laowang.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,18 +8,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-/**
- * Created by Administrator on 2017/1/9.
- */
+import static org.junit.Assert.*;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
-//@ContextConfiguration(classes = Application.class)
-public class SpringAnnoationTestCase {
+public class UserServiceImplTest {
     @Autowired
     private UserService userService;
+
     @Test
-    public void save(){
-        userService.save();
+    public void save() throws Exception {
+        User user = new User("hanghang","123123");
+        userService.save(user);
+    }
+
+    @Test
+    public void findById() throws Exception {
+        User user = userService.findById(3);
+        System.out.println(user);
+        assertNotNull(user);
+
     }
 
 }
