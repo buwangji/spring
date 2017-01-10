@@ -1,12 +1,17 @@
 package com.laowang.dao;
 
-/**
- * Created by Administrator on 2017/1/7.
- */
+
+import com.laowang.pojo.User;
+
+import java.util.List;
+
 public interface UserDao {
 
-    void add();
-    void save();
+    void save(User user);
+    void update(User user);
+    User findById(Integer id);
+    List<User> findAll();
+    Long count();
 
 
 }

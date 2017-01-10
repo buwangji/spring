@@ -18,6 +18,8 @@
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
+
+      <!--spring-->
       <dependency>
           <groupId>org.springframework</groupId>
           <artifactId>spring-context</artifactId>
@@ -38,7 +40,42 @@
           <artifactId>spring-test</artifactId>
           <version>${spring-version}</version>
       </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-jdbc</artifactId>
+          <version>${spring-version}</version>
+      </dependency>
+      <!--commons-->
+      <dependency>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>commons-dbcp2</artifactId>
+          <version>2.1.1</version>
+      </dependency>
 
+
+      <!--cglib-->
+      <dependency>
+          <groupId>cglib</groupId>
+          <artifactId>cglib</artifactId>
+          <version>3.2.4</version>
+      </dependency>
+      <!--other-->
+      <dependency>
+          <groupId>javax.inject</groupId>
+          <artifactId>javax.inject</artifactId>
+          <version>1</version>
+      </dependency>
+
+      <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+          <version>5.1.40</version>
+      </dependency>
+      <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>4.12</version>
+      </dependency>
 
 
   </dependencies>
